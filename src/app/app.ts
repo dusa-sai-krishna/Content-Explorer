@@ -1,12 +1,22 @@
-import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import {Component, inject} from '@angular/core';
+import {ThemeService} from "../theme/theme.service";
+import {Button} from "primeng/button";
+
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
+  imports: [
+    Button
+  ],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })
 export class App {
-  protected title = 'todoWithPrimeNg';
+  private _themeService = inject(ThemeService)
+  public theme = this._themeService.theme;
+
+
+  onToggleTheme() {
+    this._themeService.toggleDarkMode();
+  }
 }
