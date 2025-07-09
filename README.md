@@ -2,6 +2,9 @@
 
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 20.0.5.
 
+## Renaming Project
+By default your new project will internally have the name "todoWithPrimeNg". So go to `angular.json`, `package.json` and `package-lock.json` and update the project name at each instance according to the native format.
+
 ## Development server
 
 To start a local development server, run:
