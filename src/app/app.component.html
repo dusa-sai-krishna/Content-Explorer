@@ -1,4 +1,4 @@
-<div class="flex flex-col justify-center items-center h-[100vh] space-y-3.5">
+<div class="flex flex-row justify-center space-x-3.5">
 
 	<p class="text-xl">Current Theme is {{theme()}}</p>
 
@@ -7,3 +7,9 @@
 
 </div>
 
+
+<router-outlet/>
+
+@if(errorMessage()){
+<app-error/>
+}
