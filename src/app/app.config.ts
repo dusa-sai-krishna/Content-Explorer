@@ -23,7 +23,6 @@ function headerInsertionInterceptor(request: HttpRequest<any>, next: HttpHandler
     let newRequest = request.clone({
         setHeaders: {
             'Content-Type': 'application/json',
-            'User-Agent': 'Content-Explorer-1.0',
             'trakt-api-key': TRAKT_API_KEY,
             'trakt-api-version': '2'
         }
