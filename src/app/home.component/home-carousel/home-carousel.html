@@ -1,0 +1,48 @@
+<div class="homeCarouselComponent ">
+
+	@if(!isLoading() && content().length===0){
+		<p class="text-xl text-center" >OOPs!! No {{title()}} found 😪😪</p>
+	} @else {
+		<h1 class="text-3xl font-bold">{{title()}}</h1>
+		@if(isLoading()){
+			<p-skeleton width="60rem" height="30rem" class="mt-10" />
+		}
+		@else {
+			<p-carousel class="mt-5" [value]="sorted_content()" [numVisible]="1" [numScroll]="1" [circular]="false"
+						[showIndicators]="false">
+				<ng-template let-content #item>
+
+					<div class="relative w-full h-full">
+						<!-- Your image -->
+						<img
+							src="https://{{ content.images.fanart[0] }}"
+							alt="{{ content.title }}"
+							class="w-full h-auto"
+						/>
+
+						<!-- Black, semi-transparent overlay -->
+						<div
+							class="absolute bottom-0 left-0 w-full h-[8rem]
+           bg-black/50 z-10"
+						></div>
+
+						<!-- Title and rating -->
+						<div
+							class="absolute bottom-3 right-3 flex flex-col space-y-2
+           text-right z-20"
+						>
+							<h3 class="text-[2.5rem] font-bold text-white">
+								{{ content.title }}
+							</h3>
+							<p class="font-bold text-white">
+								Imdb Rating: {{ content.rating | number:"1.0-2" }} ⭐
+							</p>
+						</div>
+					</div>
+				</ng-template>
+			</p-carousel>
+		}
+	}
+	
+
+</div>

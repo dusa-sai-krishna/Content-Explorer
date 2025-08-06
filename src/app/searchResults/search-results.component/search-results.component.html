@@ -1,0 +1,19 @@
+<div  class="mt-5 flex flex-col space-y-4">
+
+
+	<div class="flex flex-row">
+		<div class="w-1/5 fixed left-1">
+
+			<app-filter [searchType]="searchType()"/>
+
+		</div>
+		<div class="flex flex-row flex-wrap w-full ml-20 " >
+			@for (content of searchResult() ; track content!.ids.trakt) {
+					<app-content-card [content]="content"/>
+			}
+		</div>
+	</div>
+
+	<p-paginator (onPageChange)="onPageChange($event)" [first]="first"  [rows]="1" [totalRecords]="totalPages()"/>
+
+</div>

@@ -1,0 +1,26 @@
+import {Component, computed, inject, input} from '@angular/core';
+import {Movie, Show} from "../../media.model";
+import {Carousel} from "primeng/carousel";
+import {DecimalPipe} from "@angular/common";
+import {LoadingService} from "../../loading.service";
+import {Skeleton} from "primeng/skeleton";
+
+@Component({
+  selector: 'app-home-carousel',
+  imports: [
+    Carousel,
+    DecimalPipe,
+    Skeleton
+  ],
+  templateUrl: './home-carousel.html',
+  styleUrl: './home-carousel.css'
+})
+export class HomeCarousel {
+content = input.required<Show[]|Movie[]>();
+title = input.required<string>();
+private _loadingService= inject(LoadingService);
+isLoading = this._loadingService.isLoading;
+sorted_content = computed(()=>{
+  return this.content().sort((left,right)=>(left.rating!-right.rating!)*-1)
+})
+}
