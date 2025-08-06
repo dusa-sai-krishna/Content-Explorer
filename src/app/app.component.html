@@ -1,20 +1,23 @@
-<header>
-	<app-header/>
-</header>
+
+<div class="ml-[15vw] mr-[5vw] flex flex-col min-h-[100vh]">
+	<header>
+		<app-header/>
+	</header>
+
+	<main class="flex-1">
+		<router-outlet/>
+	</main>
 
 
-<div class="flex flex-row justify-center space-x-3.5">
-
-	<p class="text-xl">Current Theme is {{theme()}}</p>
-
-	<p-button (click)="onToggleTheme()"> Toggle Theme</p-button>
-
-
+	<footer class="">
+		<app-footer/>
+	</footer>
 </div>
 
-
-<router-outlet/>
 
 @if(errorMessage()){
 <app-error/>
 }
+
+
+

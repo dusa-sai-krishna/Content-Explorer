@@ -1,5 +1,9 @@
 import {ApplicationConfig, inject, provideBrowserGlobalErrorListeners, provideZoneChangeDetection} from '@angular/core';
-import {provideRouter} from '@angular/router';
+import {
+    provideRouter,
+    withComponentInputBinding,
+    withRouterConfig
+} from '@angular/router';
 import {routes} from './app.routes';
 import {provideAnimationsAsync} from "@angular/platform-browser/animations/async";
 import {providePrimeNG} from "primeng/config";
@@ -29,6 +33,7 @@ function headerInsertionInterceptor(request: HttpRequest<any>, next: HttpHandler
     })
 
     return next(newRequest);
+
 }
 
 function cacheInterceptor(request: HttpRequest<any>, next: HttpHandlerFn) {
@@ -70,7 +75,9 @@ export const appConfig: ApplicationConfig = {
             loadingInterceptor, headerInsertionInterceptor, cacheInterceptor, errorHandlingInterceptor])),
         provideBrowserGlobalErrorListeners(),
         provideZoneChangeDetection({eventCoalescing: true}),
-        provideRouter(routes),
+        provideRouter(routes,withComponentInputBinding(),withRouterConfig({
+            paramsInheritanceStrategy:"always"
+        })),
         provideAnimationsAsync(),
         providePrimeNG({
             theme: {

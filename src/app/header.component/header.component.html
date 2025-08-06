@@ -1,42 +1,46 @@
-<form [formGroup]="ngForm" (ngSubmit)="onSubmit()"
-	  class="flex flex-row justify-evenly items-end h-[10vh] w-full space-x-4 mt-10">
 
-	<div class="left flex flex-row space-x-4">
-		<p-floatlabel>
-			<p-select formControlName="country" [options]="COUNTRIES" [filter]="true" optionLabel="name"
-					  optionValue="code"
-			/>
-			<label for="over_label">Country</label>
-		</p-floatlabel>
+<div class="flex flex-row h-[10vh] w-full mt-10 space-x-10 items-center" >
 
+	<form [formGroup]="ngForm" (ngSubmit)="onSubmit()"
+		  class="flex flex-row justify-between items-center  space-x-4">
 
-		<p-floatlabel>
-			<p-select formControlName="searchType" [options]="searchTypeValues"
-			/>
-			<label for="over_label">Search By</label>
-		</p-floatlabel>
-	</div>
-	<div class="center flex flex-row space-x-4 w-[40vw]">
+		<div class="left flex flex-row space-x-4">
+			<p-floatlabel>
+				<p-select (onChange)="onCountryChange($event)" formControlName="country" [options]="COUNTRIES" [filter]="true" optionLabel="name"
+						   optionValue="code"
+				/>
+				<label for="over_label">Country</label>
+			</p-floatlabel>
 
-
-		<p-floatlabel class="w-full">
-			<input type="text" pInputText formControlName="name" fluid pSize="large"/>
-			<label for="over_label">Name</label>
-		</p-floatlabel>
-		<p-button type="submit" icon="pi pi-search" class="mt-1" [rounded]="true" [outlined]="true"/>
-
-	</div>
+			<p-floatlabel>
+				<p-select formControlName="searchType" [options]="searchTypeValues"
+				/>
+				<label for="over_label">Search By</label>
+			</p-floatlabel>
+		</div>
+		<div class="center flex flex-row space-x-4 w-[40vw]">
 
 
-	<div class="right pb-1">
-		@if (theme() == "dark") {
-			<p-button (click)="onToggleTheme()" icon="pi pi-sun	" [rounded]="true"/>
-		} @else {
-			<p-button (click)="onToggleTheme()" icon="pi pi-moon	" [rounded]="true"/>
-		}
+			<p-floatlabel class="w-full">
+				<input type="text" pInputText formControlName="query" fluid pSize="large"/>
+				<label for="over_label">Name</label>
+			</p-floatlabel>
+			<p-button type="submit" icon="pi pi-search" class="mt-1" [rounded]="true" [outlined]="true"/>
+
+		</div>
 
 
-	</div>
+		<div class="right pb-1 ml-32 ">
+			@if (theme() == "dark") {
+				<p-button (click)="onToggleTheme()" icon="pi pi-sun	" [rounded]="true"/>
+			} @else {
+				<p-button (click)="onToggleTheme()" icon="pi pi-moon	" [rounded]="true"/>
+			}
 
 
-</form>
+		</div>
+
+
+	</form>
+</div>
+
