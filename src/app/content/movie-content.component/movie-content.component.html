@@ -1,0 +1,49 @@
+<div class="movie-container">
+	<div class="hero-section">
+		<div class="fanart-container">
+			<img class="fanart-image" [src]="fanartImg()" [alt]="movie()?.title">
+		</div>
+
+		<div class="movie-title-section" [ngClass]="movie()?.title && movie()!.title.length > 15 ? 'title-bottom-40' : 'title-bottom-30'">
+			<span class="movie-title">{{movie()?.title}}</span>
+			<span class="movie-year">{{year()}}</span>
+			<span class="movie-certification">{{certification()}}</span>
+			<span class="movie-rating">{{rating()}}⭐</span>
+		</div>
+	</div>
+	
+	<div class="content-section">
+		<div class="poster-section">
+			<img class="poster-image" [src]="posterImg()" alt="Movie poster">
+			<div class="social-links">
+				@if(movie()?.trailer){
+					<a [href]="movie()!.trailer">
+						<i class="pi pi-youtube youtube-icon"></i>
+					</a>
+				}
+				@if(movie()?.homepage){
+					<a [href]="movie()!.homepage">
+						<i class="pi pi-external-link external-link-icon"></i>
+					</a>
+				}
+			</div>
+		</div>
+
+		<div class="movie-details">
+			<p><span class="tagline">{{movie()?.tagline}}</span></p>
+			<p>
+				<span class="detail-label">RUNTIME: </span>
+				<span class="detail-value">{{movie()?.runtime}} m</span>
+			</p>
+			<p>
+				<span class="detail-label">LANGUAGE: </span>
+				<span class="detail-value">{{movie()?.language}}</span>
+			</p>
+			<p>
+				<span class="detail-label">GENRES: </span>
+				<span class="detail-value">{{genres() | titlecase}}</span>
+			</p>
+			<p class="overview">{{movie()?.overview}}</p>
+		</div>
+	</div>
+</div>

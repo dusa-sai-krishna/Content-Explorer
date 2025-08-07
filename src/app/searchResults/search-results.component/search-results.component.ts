@@ -7,7 +7,7 @@ import {
 } from '@angular/core';
 import { ContentCardComponent } from "../content-card.component/content-card.component";
 import { ApiService } from "../../api.service";
-import { ActivatedRoute, Router } from "@angular/router";
+import {ActivatedRoute, Router, RouterLink} from "@angular/router";
 import { Episode, Movie, Show } from "../../media.model";
 import { Paginator, PaginatorState } from "primeng/paginator";
 import { toSignal } from '@angular/core/rxjs-interop'; // Required for signal conversion
@@ -20,7 +20,8 @@ import {FilterComponent} from "../filter.component/filter.component";
     imports: [
         ContentCardComponent,
         Paginator,
-        FilterComponent
+        FilterComponent,
+        RouterLink
     ],
     templateUrl: './search-results.component.html',
     styleUrl: './search-results.component.css'

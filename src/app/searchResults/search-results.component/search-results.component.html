@@ -9,7 +9,10 @@
 		</div>
 		<div class="flex flex-row flex-wrap w-full ml-20 " >
 			@for (content of searchResult() ; track content!.ids.trakt) {
+				<a [routerLink]="['/',searchType(),content.ids.trakt]">
 					<app-content-card [content]="content"/>
+				</a>
+
 			}
 		</div>
 	</div>

@@ -4,6 +4,9 @@ import {HomeComponent} from "./home.component/home.component";
 import {
     SearchResultsComponent
 } from "./searchResults/search-results.component/search-results.component";
+import {
+    MovieContentComponent
+} from "./content/movie-content.component/movie-content.component";
 
 export const routes: Routes = [
     {
@@ -13,6 +16,10 @@ export const routes: Routes = [
     {
         path:"search/:searchType",
         component:SearchResultsComponent
+    },
+    {
+        path:"movie/:id",
+        component:MovieContentComponent
     },
     {
         path:"**",

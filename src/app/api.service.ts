@@ -61,37 +61,40 @@ export class ApiService {
             page: string;
             countries: string;
             genres: string;
-            imdb_ratings:string;
-            runtimes:string;
-            years:string
+            imdb_ratings: string;
+            runtimes: string;
+            years: string
         } | undefined
     ): Observable<(Movie | Show | Episode)[]> {
 
         let params = new HttpParams();
 
         Object.entries(queryParams!).forEach(([key, value]) => {
-            if (key === "countries" && value!=="false") {
-                console.log("countries:",key,value)
+            if (key === "countries" && value !== "false") {
+                console.log("countries:", key, value)
                 params = params.set("countries", this.COUNTRY());
-            } else if(key!=="countries" && value){
+            } else if (key !== "countries" && value) {
                 // console.log(key,value)
-                params = params.set(key,value);
+                params = params.set(key, value);
             }
         });
-        
+
         //default params
-        params = params.set("extended","full,images")
-            .set("limit",12)
+        params = params.set("extended", "full,images")
+            .set("limit", 12)
 
         return this._httpClient
-            .get<RESPONSE_SEARCH_BODY[]>(`https://api.trakt.tv/search/${searchType}`, { params,observe:"response"})
+            .get<RESPONSE_SEARCH_BODY[]>(`https://api.trakt.tv/search/${searchType}`, {
+                params,
+                observe: "response"
+            })
             .pipe(
-                tap((response)=>{
+                tap((response) => {
                     const totalPages = response.headers.get("X-Pagination-Page-Count") ?? "1";
                     this._totalPages.set(Number(totalPages))
-                    console.log("Response\n",response)
+                    console.log("Response\n", response)
                 })
-                ,map(response =>
+                , map(response =>
                     response.body!
                         .map(item => {
                             if (searchType === 'movie') return item.movie;
@@ -104,5 +107,16 @@ export class ApiService {
             );
     }
 
+
+    fetchMovieDetails(id: string) {
+        return this._httpClient.get<RESPONSE_MOVIES_BODY[]>(`https://api.trakt.tv/search/trakt/${id}?type=movie&extended=full,images`)
+            .pipe(
+                map(response => {
+                    // console.log(response);
+                    return response[0].movie
+                }),
+                // tap(movie => console.log(movie))
+            )
+    }
 
 }

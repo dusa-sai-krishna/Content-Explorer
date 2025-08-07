@@ -9,6 +9,15 @@ export type  Movie={
     }
     images?:Images
     rating?:number
+    certification?:string
+    runtime?:number
+    trailer?:string
+    homepage?:string
+    language?:string
+    genres?:string[]
+    subgenres?:string[]
+    tagline?:string;
+    overview?:string
 }
 
 export type Show = {
@@ -23,6 +32,7 @@ export type Show = {
     }
     images?:Images
     rating?:number
+    certification?:string
 }
 
 export type Season = {
