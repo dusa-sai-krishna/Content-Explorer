@@ -45,7 +45,10 @@ export class SearchResultsComponent  {
                 // will be space
                 page: (params.get('page') || '1'),
                 countries:(params.get("country") || "false"),
-                genres:(params.get("genres")) || ""
+                genres:(params.get("genres")) || "",
+                years:(params.get("years")) || "",
+                runtimes:(params.get("runtimes")) || "",
+                imdb_ratings:(params.get("imdb_ratings")) || ""
             }))
         )
     );

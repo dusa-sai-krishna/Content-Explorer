@@ -60,7 +60,10 @@ export class ApiService {
             query: string;
             page: string;
             countries: string;
-            genres: string
+            genres: string;
+            imdb_ratings:string;
+            runtimes:string;
+            years:string
         } | undefined
     ): Observable<(Movie | Show | Episode)[]> {
 

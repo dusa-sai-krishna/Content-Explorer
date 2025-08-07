@@ -11,6 +11,53 @@
 			</ng-template>
 		</p-multiselect>
 
+
+<!--		Year range-->
+		<div [formGroup]="ngForm.controls.years" >
+			@if(this.ngForm.controls.years.invalid){
+				<p class="text-sm text-red-500">Invalid Year Range. Min year > Max Year</p>
+				}
+			<div class="flex flex-col space-y-3" >
+				<p>Min Year: {{ngForm.controls.years.controls.minYear.value}}</p>
+				<p-slider [min]="1990" [max]="2025" formControlName="minYear" class="w-56" />
+			</div>
+			<div class="flex flex-col space-y-3" >
+				<p>Max Year: {{ngForm.controls.years.controls.maxYear.value}}</p>
+				<p-slider [min]="1990" [max]="2025" formControlName="maxYear" class="w-56" />
+			</div>
+		</div>
+
+		<!--		Runtime range-->
+		<div [formGroup]="ngForm.controls.runtimes" >
+			@if(this.ngForm.controls.runtimes.invalid){
+				<p class="text-sm text-red-500">Invalid Runtime Range. Min runtime > Max runtime</p>
+				}
+			<div class="flex flex-col space-y-3" >
+				<p>Min Runtime: {{ngForm.controls.runtimes.controls.minRuntime.value}} minutes</p>
+				<p-slider [min]="20" [max]="240" formControlName="minRuntime" class="w-56" />
+			</div>
+			<div class="flex flex-col space-y-3" >
+				<p>Max Runtime: {{ngForm.controls.runtimes.controls.maxRuntime.value}} minutes</p>
+				<p-slider [min]="20" [max]="240" formControlName="maxRuntime" class="w-56" />
+			</div>
+		</div>
+
+		<!--		IMDB Rating range-->
+		<div [formGroup]="ngForm.controls.imdbRatings" >
+			@if(this.ngForm.controls.imdbRatings.invalid){
+				<p class="text-sm text-red-500">Invalid Rating Range. Min rating > Max rating</p>
+				}
+			<div class="flex flex-col space-y-3" >
+				<p>Min IMDB Rating: {{ngForm.controls.imdbRatings.controls.minRating.value}}</p>
+				<p-slider [min]="0" [max]="10" [step]="0.1" formControlName="minRating" class="w-56" />
+			</div>
+			<div class="flex flex-col space-y-3" >
+				<p>Max IMDB Rating: {{ngForm.controls.imdbRatings.controls.maxRating.value}}</p>
+				<p-slider [min]="0" [max]="10" [step]="0.1" formControlName="maxRating" class="w-56" />
+			</div>
+		</div>
+
+
 		<button pButton type="submit">Submit</button>
 	</form>
 </div>
