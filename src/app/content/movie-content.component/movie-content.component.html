@@ -1,49 +1,60 @@
-<div class="movie-container">
-	<div class="hero-section">
-		<div class="fanart-container">
-			<img class="fanart-image" [src]="fanartImg()" [alt]="movie()?.title">
+<div>
+	<div class="relative bottom-40 -z-10 overflow-x-hidden overflow-y-hidden h-[60vh]" >
+		<div class="h-[60vh] w-[80vw]">
+			<img class="opacity-50 object-cover w-full h-full" [src]="fanartImg()" [alt]="movie()?.title"  >
 		</div>
 
-		<div class="movie-title-section" [ngClass]="movie()?.title && movie()!.title.length > 15 ? 'title-bottom-40' : 'title-bottom-30'">
-			<span class="movie-title">{{movie()?.title}}</span>
-			<span class="movie-year">{{year()}}</span>
-			<span class="movie-certification">{{certification()}}</span>
-			<span class="movie-rating">{{rating()}}⭐</span>
-		</div>
+		<p class="relative left-10 bottom-30 font-bold flex flex-col space-y-3 " [class]="'bottom-' + (movie()?.title && movie()!.title.length > 15 ? '40' : '30')">
+			<span class="text-3xl">{{movie()?.title}}</span>
+			<span class=" text-xl font-bold text-gray-400" >{{year()}}</span>
+			<span class="text-xl bg-gradient-to-r from-blue-500 to-purple-600 bg-clip-text text-transparent">{{certification()}}</span>
+		<span class="relative left-30 bottom-12 text-3xl" >{{rating()}}⭐</span>
+		</p>
+
 	</div>
-	
-	<div class="content-section">
-		<div class="poster-section">
-			<img class="poster-image" [src]="posterImg()" alt="Movie poster">
-			<div class="social-links">
+	<div class="relative bottom-30 left-10 flex flex-row w-full space-x-20" >
+		<div class="flex flex-col">
+			<div>
+				<img class="h-[18rem]" [src]="posterImg()" alt="">
+			</div>
+			<div class="flex flex-row space-x-6 w-full justify-center p-4" >
 				@if(movie()?.trailer){
 					<a [href]="movie()!.trailer">
-						<i class="pi pi-youtube youtube-icon"></i>
+						<i class="pi pi-youtube" style="font-size: 2.5rem;color:#FF0000"></i>
 					</a>
 				}
 				@if(movie()?.homepage){
 					<a [href]="movie()!.homepage">
-						<i class="pi pi-external-link external-link-icon"></i>
+						<i class="pi pi-external-link" style="font-size: 1.5rem;padding-top:6px;color:slategrey"></i>
 					</a>
 				}
+
+
 			</div>
 		</div>
 
-		<div class="movie-details">
-			<p><span class="tagline">{{movie()?.tagline}}</span></p>
+		<div class="flex flex-col space-y-5 pt-2 max-w-[60vw] " >
 			<p>
-				<span class="detail-label">RUNTIME: </span>
-				<span class="detail-value">{{movie()?.runtime}} m</span>
+				<span class="font-bold" >{{movie()?.tagline}}</span>
 			</p>
 			<p>
-				<span class="detail-label">LANGUAGE: </span>
-				<span class="detail-value">{{movie()?.language}}</span>
+				<span class="text-lg text-surface-400">RUNTIME:   </span>
+				<span class="font-bold" >{{movie()?.runtime}} m</span>
 			</p>
 			<p>
-				<span class="detail-label">GENRES: </span>
-				<span class="detail-value">{{genres() | titlecase}}</span>
+				<span class="text-lg text-surface-400">LANGUAGE:   </span>
+				<span class="font-bold" >{{movie()?.language}}</span>
 			</p>
-			<p class="overview">{{movie()?.overview}}</p>
+			<p>
+				<span class="text-lg text-surface-400">GENRES:   </span>
+				<span class="font-bold" >{{genres() | titlecase}}</span>
+			</p>
+
+			<p class="text-md text-surface-400">{{movie()?.overview}}</p>
+
 		</div>
 	</div>
+
+
+
 </div>

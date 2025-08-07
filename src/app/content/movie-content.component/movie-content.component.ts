@@ -15,8 +15,7 @@ import {TitleCasePipe} from "@angular/common";
     imports: [
         TitleCasePipe
     ],
-    templateUrl: './movie-content.component.html',
-    styleUrl: './movie-content.component.css'
+    templateUrl: './movie-content.component.html'
 })
 export class MovieContentComponent implements OnInit {
     private _apiService = inject(ApiService)
