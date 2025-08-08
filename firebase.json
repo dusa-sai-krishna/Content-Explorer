@@ -1,0 +1,19 @@
+{
+  "hosting": {
+    "site": "trakt-content-explorer",
+    "public": "dist/contentExplorer/browser",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ],
+    "rewrites": [
+      {
+        "source": "**",
+        "destination": "/index.html"
+      }
+    ]
+  }
+}
+
+

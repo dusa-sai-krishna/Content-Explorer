@@ -4,7 +4,7 @@ A modern, feature-rich content discovery platform built with Angular that levera
 
 ## 🚀 Live Demo
 
-**Deployed on Firebase:** [Your Deployment Link Here]
+**Deployed on Firebase:** [https://trakt-content-explorer.web.app/](https://trakt-content-explorer.web.app/)
 
 ---
 
