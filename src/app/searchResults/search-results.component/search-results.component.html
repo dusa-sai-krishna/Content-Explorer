@@ -21,7 +21,7 @@
 
 @for (content of searchResult() ; track content!.ids.trakt) {
 <a target="_blank" [routerLink]="['/',searchType(),content.ids.trakt]">
-	<app-content-card [content]="content" [type]="searchType()" />
+	<app-content-card [content]="content" [type]="searchType()"/>
 </a>
 
 }

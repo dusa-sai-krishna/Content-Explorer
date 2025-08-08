@@ -6,9 +6,9 @@
 	<ng-template  #title> <p class="truncate w-60" >{{contentTitle()}}</p></ng-template>
 	<ng-template #subtitle>Year:{{year()}}   {{rating()}}⭐
 
-		@if(type() === "show"){
+	@if(type()==="show"){
 		<span>{{content().aired_episodes}}👁️</span>
-		}
+	}
 
 	</ng-template>
 

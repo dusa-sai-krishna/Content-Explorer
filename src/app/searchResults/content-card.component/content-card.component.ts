@@ -1,4 +1,4 @@
-import {Component, computed, effect, Input, input, signal} from '@angular/core';
+import {Component, computed, effect, input, signal} from '@angular/core';
 import {Card} from "primeng/card";
 import {Episode, Movie, Show} from "../../media.model";
 
@@ -11,9 +11,9 @@ import {Episode, Movie, Show} from "../../media.model";
   styleUrl: './content-card.component.css'
 })
 export class ContentCardComponent {
-  content = input.required<any>();
+  content = input.required<any >();
   posterImg = signal<string>("/placeholder-poster.png")
-  type = input.required();
+  type = input.required<string>()
   constructor() {
     effect(() => {
       const x = this.content().images?.poster.length ?? 0
@@ -38,5 +38,4 @@ export class ContentCardComponent {
   contentTitle= computed(()=>this.content().title)
   rating = computed(()=>this.content().rating?.toFixed(1) ?? "0.0")
   year = computed(()=>this.content().year ?? 1111)
-
 }

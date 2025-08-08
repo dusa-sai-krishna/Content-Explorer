@@ -87,7 +87,26 @@ ngOnInit() {
     this.genres=[]
   }
 
-  }
+  // Populate form with existing query params
+  this._route.queryParams.subscribe(params => {
+    this.ngForm.patchValue({
+      byCountry: params['country'] === 'true',
+      genreList: params['genres'] ? this.genres.filter(g => params['genres'].split(',').includes(g.value)) : null,
+      years: {
+        minYear: params['years'] ? parseInt(params['years'].split('-')[0]) : 1990,
+        maxYear: params['years'] ? parseInt(params['years'].split('-')[1]) : 2025
+      },
+      runtimes: {
+        minRuntime: params['runtimes'] ? parseInt(params['runtimes'].split('-')[0]) : 20,
+        maxRuntime: params['runtimes'] ? parseInt(params['runtimes'].split('-')[1]) : 240
+      },
+      imdbRatings: {
+        minRating: params['imdb_ratings'] ? parseFloat(params['imdb_ratings'].split('-')[0]) : 0.0,
+        maxRating: params['imdb_ratings'] ? parseFloat(params['imdb_ratings'].split('-')[1]) : 10.0
+      }
+    });
+  });
+}
 
 
   protected ngForm = new FormGroup({
