@@ -5,7 +5,7 @@ import {
     RESPONSE_SEARCH_BODY,
     RESPONSE_SHOWS_BODY
 } from "./response.model";
-import {filter, map, Observable, tap} from "rxjs";
+import { map, Observable, tap} from "rxjs";
 import {Episode, Movie, Season, Show} from "./media.model";
 
 @Injectable({
