@@ -4,6 +4,7 @@ import {Carousel} from "primeng/carousel";
 import {DecimalPipe} from "@angular/common";
 import {LoadingService} from "../../loading.service";
 import {Skeleton} from "primeng/skeleton";
+import {RouterLink} from "@angular/router";
 
 @Component({
   selector: 'app-home-carousel',
