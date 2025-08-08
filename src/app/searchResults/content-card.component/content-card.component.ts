@@ -11,9 +11,9 @@ import {Episode, Movie, Show} from "../../media.model";
   styleUrl: './content-card.component.css'
 })
 export class ContentCardComponent {
-  content = input.required<Movie|Episode|Show >();
+  content = input.required<any >();
   posterImg = signal<string>("/placeholder-poster.png")
-
+  type = input.required<string>()
   constructor() {
     effect(() => {
       const x = this.content().images?.poster.length ?? 0

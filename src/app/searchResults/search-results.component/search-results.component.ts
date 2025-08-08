@@ -62,9 +62,17 @@ export class SearchResultsComponent  {
     );
 
     constructor() {
+        // Initialize pagination from URL
+        effect(() => {
+            const params = this.queryParamSignal();
+            if (params?.page) {
+                const pageNum = parseInt(params.page) - 1;
+                this.first = pageNum * 1;
+            }
+        });
+
         effect(() => {
             const type = this.searchType();
-            // console.log("Country",this.queryParamSignal()?.countries);
             this._apiService.searchUserInput(type,this.queryParamSignal()).subscribe(results => {
                 this.searchResult.set(results);
             });

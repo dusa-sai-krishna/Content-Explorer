@@ -4,6 +4,12 @@
 		<img alt="Card" class="w-full object-cover" [src]="posterImg()"  loading="lazy"/>
 	</ng-template>
 	<ng-template  #title> <p class="truncate w-60" >{{contentTitle()}}</p></ng-template>
-	<ng-template #subtitle>Year:{{year()}}   {{rating()}}⭐</ng-template>
+	<ng-template #subtitle>Year:{{year()}}   {{rating()}}⭐
+
+	@if(type()==="show"){
+		<span>{{content().aired_episodes}}👁️</span>
+	}
+
+	</ng-template>
 
 </p-card>
