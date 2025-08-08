@@ -6,28 +6,31 @@ import {
     OnInit,
     signal
 } from '@angular/core';
-import {Movie} from "../../media.model";
+import {Movie, Season} from "../../media.model";
 import {ApiService} from "../../api.service";
-import {NgOptimizedImage, TitleCasePipe} from "@angular/common";
-import {Dialog} from "primeng/dialog";
+import {DecimalPipe, NgOptimizedImage, TitleCasePipe} from "@angular/common";
+import {Carousel} from "primeng/carousel";
 import {LoadingService} from "../../loading.service";
+import {Dialog} from "primeng/dialog";
 
 @Component({
-    selector: 'app-movie-content',
+    selector: 'app-show-content',
     imports: [
         TitleCasePipe,
+        Carousel,
+        DecimalPipe,
         Dialog,
         NgOptimizedImage
     ],
-    templateUrl: './movie-content.component.html'
+    templateUrl: './show-content.component.html'
 })
-export class MovieContentComponent implements OnInit {
+export class ShowContentComponent implements OnInit {
     private _apiService = inject(ApiService)
-    private _loadingservice = inject(LoadingService);
-    isLoading = this._loadingservice.isLoading
+    private _loadingService = inject(LoadingService);
+    isLoading = this._loadingService.isLoading;
     id = input<string>("");
     movie = signal<Movie | undefined>(undefined);
-
+    seasons = signal<Season[]|undefined>(undefined);
 
     fanartImg = computed(()=> {
 
@@ -56,10 +59,12 @@ export class MovieContentComponent implements OnInit {
     rating = computed(()=>this.movie()?.rating?.toFixed(1) ?? "X.X")
 
     ngOnInit() {
-        this._apiService.fetchMovieDetails(this.id()).subscribe(res => {
+        this._apiService.fetchShowDetails(this.id()).subscribe(res => {
             // console.log("Got movie",res)
             this.movie.set(res)
         })
+
+        this._apiService.fetchSeasonDetails(this.id()).subscribe(res=>this.seasons.set(res))
     }
 
 }

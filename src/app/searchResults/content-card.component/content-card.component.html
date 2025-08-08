@@ -1,9 +1,9 @@
 
 <p-card [style]="{ width: '15rem', overflow: 'hidden'}" [dt]="{body:{padding:'0px'}}">
 	<ng-template #header>
-		<img alt="Card" class="h-[30%]" [src]="posterImg()" />
+		<img alt="Card" class="w-full object-cover" [src]="posterImg()"  loading="lazy"/>
 	</ng-template>
-	<ng-template #title>{{contentTitle()}}</ng-template>
+	<ng-template  #title> <p class="truncate w-60" >{{contentTitle()}}</p></ng-template>
 	<ng-template #subtitle>Year:{{year()}}   {{rating()}}⭐</ng-template>
 
 </p-card>

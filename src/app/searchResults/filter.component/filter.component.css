@@ -1,3 +1,11 @@
 .hidden{
     display:none
 }
+
+::ng-deep .p-multiselect {
+  width: 100% !important;
+}
+
+::ng-deep .p-multiselect-panel {
+  width: 100% !important;
+}

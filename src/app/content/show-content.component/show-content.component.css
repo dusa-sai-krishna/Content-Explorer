@@ -1,0 +1,90 @@
+.movie-container {
+  @apply relative;
+}
+
+.hero-section {
+  @apply relative bottom-40 -z-10 overflow-hidden h-[60vh];
+}
+
+.fanart-container {
+  @apply h-[60vh] w-[80vw];
+}
+
+.fanart-image {
+  @apply opacity-50 object-cover w-full h-full;
+}
+
+.movie-title-section {
+  @apply relative left-10 font-bold flex flex-col space-y-3;
+}
+
+.movie-title {
+  @apply text-3xl;
+}
+
+.movie-year {
+  @apply text-xl font-bold text-gray-400;
+}
+
+.movie-certification {
+  @apply text-xl bg-gradient-to-r from-blue-500 to-purple-600 bg-clip-text text-transparent;
+}
+
+.movie-rating {
+  @apply relative left-30 bottom-12 text-3xl;
+}
+
+.content-section {
+  @apply relative bottom-30 left-10 flex flex-row w-full space-x-20;
+}
+
+.poster-section {
+  @apply flex flex-col;
+}
+
+.poster-image {
+  @apply h-[18rem];
+}
+
+.social-links {
+  @apply flex flex-row space-x-6 w-full justify-center p-4;
+}
+
+.youtube-icon {
+  font-size: 2.5rem;
+  color: #FF0000;
+}
+
+.external-link-icon {
+  font-size: 1.5rem;
+  padding-top: 6px;
+  color: slategrey;
+}
+
+.movie-details {
+  @apply flex flex-col space-y-5 pt-2 max-w-[60vw];
+}
+
+.tagline {
+  @apply font-bold;
+}
+
+.detail-label {
+  @apply text-lg text-surface-400;
+}
+
+.detail-value {
+  @apply font-bold;
+}
+
+.overview {
+  @apply text-md text-surface-400;
+}
+
+.title-bottom-30 {
+  @apply bottom-30;
+}
+
+.title-bottom-40 {
+  @apply bottom-40;
+}

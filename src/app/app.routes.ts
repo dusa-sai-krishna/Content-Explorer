@@ -7,6 +7,9 @@ import {
 import {
     MovieContentComponent
 } from "./content/movie-content.component/movie-content.component";
+import {
+    ShowContentComponent
+} from "./content/show-content.component/show-content.component";
 
 export const routes: Routes = [
     {
@@ -20,6 +23,10 @@ export const routes: Routes = [
     {
         path:"movie/:id",
         component:MovieContentComponent
+    },
+    {
+        path:"show/:id",
+        component:ShowContentComponent
     },
     {
         path:"**",

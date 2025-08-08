@@ -1,4 +1,4 @@
-import {Component, computed, input} from '@angular/core';
+import {Component, computed, effect, input, signal} from '@angular/core';
 import {Card} from "primeng/card";
 import {Episode, Movie, Show} from "../../media.model";
 
@@ -12,14 +12,29 @@ import {Episode, Movie, Show} from "../../media.model";
 })
 export class ContentCardComponent {
   content = input.required<Movie|Episode|Show >();
-  posterImg = computed(()=>{
-    if(this.content().images?.poster.length!==0){
-      return `https://${this.content().images?.poster[0]}`
-    }
-    else{
-      return "https://placehold.co/600x400/000000/FFFFFF"
-    }
-  })
+  posterImg = signal<string>("/placeholder-poster.png")
+
+  constructor() {
+    effect(() => {
+      const x = this.content().images?.poster.length ?? 0
+      if(x>0){
+        setTimeout(()=>  this.posterImg.set(`https://${this.content().images?.poster[0]}`),1000)
+
+      }
+      else{
+        this.posterImg.set("/placeholder-poster.png")
+      }
+    });
+  }
+  // posterImg = computed(()=>{
+  //   const x = this.content().images?.poster.length ?? 0
+  //   if(x>0){
+  //     return `https://${this.content().images?.poster[0]}`
+  //   }
+  //   else{
+  //     return "/placeholder-poster.png"
+  //   }
+  // })
   contentTitle= computed(()=>this.content().title)
   rating = computed(()=>this.content().rating?.toFixed(1) ?? "0.0")
   year = computed(()=>this.content().year ?? 1111)

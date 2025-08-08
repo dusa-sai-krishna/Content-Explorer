@@ -5,8 +5,8 @@ import {
     RESPONSE_SEARCH_BODY,
     RESPONSE_SHOWS_BODY
 } from "./response.model";
-import {map, Observable, tap} from "rxjs";
-import {Episode, Movie, Show} from "./media.model";
+import {filter, map, Observable, tap} from "rxjs";
+import {Episode, Movie, Season, Show} from "./media.model";
 
 @Injectable({
     providedIn: 'root'
@@ -117,6 +117,25 @@ export class ApiService {
                 }),
                 // tap(movie => console.log(movie))
             )
+    }
+
+    fetchShowDetails(id: string) {
+        return this._httpClient.get<RESPONSE_SHOWS_BODY[]>(`https://api.trakt.tv/search/trakt/${id}?type=show&extended=full,images`)
+            .pipe(
+                map(response => {
+                    // console.log(response);
+                    return response[0].show
+                }),
+                // tap(movie => console.log(movie))
+            )
+    }
+
+
+    fetchSeasonDetails(id: string) {
+        return this._httpClient.get<Season[]>(`https://api.trakt.tv/shows/${id}/seasons?extended=full,images`).pipe(
+            map(res=>res.filter(season=>season.episode_count!==0))
+        )
+
     }
 
 }

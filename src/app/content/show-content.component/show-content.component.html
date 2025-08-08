@@ -1,10 +1,11 @@
 <p-dialog [modal]="true"  [visible]="isLoading()" [style]="{ width: '25rem' }" closable="false" closeOnEscape="false">
 	<img ngSrc="/placeholder-poster.png" alt="" height="1500" width="1000">
 </p-dialog>
+
 <div>
 	<div class="relative bottom-40 -z-10 overflow-x-hidden overflow-y-hidden h-[60vh]" >
 		<div class="h-[60vh] w-[80vw]">
-			<img class="opacity-50 object-cover w-full h-full" [src]="fanartImg()" [alt]="movie()?.title"  >
+			<img class="opacity-50 object-cover object-top w-full h-full" [src]="fanartImg()" [alt]="movie()?.title"  >
 		</div>
 
 		<p class="relative left-10 bottom-30 font-bold flex flex-col space-y-3 " [class]="'bottom-' + (movie()?.title && movie()!.title.length > 15 ? '40' : '30')">
@@ -57,6 +58,44 @@
 
 		</div>
 	</div>
+
+
+	<p-carousel class="" [value]="seasons()!" [numVisible]="3" [numScroll]="3" [circular]="false"
+				[showIndicators]="false">
+		<ng-template let-content #item>
+
+			<div class="relative h-auto  max-w-[40vw] ">
+				<!-- Your image -->
+				<img
+					[src]=" content.images.poster.length>0 ? `https://${content.images.poster[0] }` : '/placeholder-poster.png'"
+					alt="{{ content.title }}"
+					class="w-full h-full object-cover object-top"
+				/>
+
+				<!-- Black, semi-transparent overlay -->
+				<div
+					class="absolute bottom-0 left-0 w-full h-[8rem]
+           bg-black/50 z-10"
+				></div>
+
+				<!-- Title and rating -->
+				<div
+					class="absolute bottom-3 right-3 flex flex-col space-y-2
+           text-right z-20"
+				>
+					<h3 class="text-xl truncate w-[19vw] font-bold text-white">
+						{{ content.title }}
+					</h3>
+					<p class="font-bold text-white">
+						{{content.episode_count}} 👁️
+					</p>
+					<p class="font-bold text-white">
+						{{ content.rating | number:"1.0-2" }} ⭐
+					</p>
+				</div>
+			</div>
+		</ng-template>
+	</p-carousel>
 
 
 

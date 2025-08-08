@@ -1,10 +1,16 @@
 <div>
-	<form class="flex flex-col space-y-3" [formGroup]="ngForm" (ngSubmit)="onSubmit()">
-		<p-checkbox [binary]="true" formControlName="byCountry"/>
-		Filter By Country
-		<p-multiselect [options]="genres" [showToggleAll]="true" formControlName="genreList" optionLabel="label"
+	<form class="flex flex-col space-y-4	" [formGroup]="ngForm" (ngSubmit)="onSubmit()">
+		<div>
+			<span class="text-surface-500 " >Filter By Country: </span>
+
+			<p-checkbox [binary]="true" formControlName="byCountry"/>
+
+		</div>
+
+
+		<p-multiselect size="small" [options]="genres" [showToggleAll]="true" formControlName="genreList" optionLabel="label"
 					   [virtualScroll]="true" [virtualScrollItemSize]="43" placeholder="Select genre(s)"
-					   [maxSelectedLabels]="3" class="w-full md:w-80" #ms>
+					   [maxSelectedLabels]="3" class="w-full" #ms>
 			<ng-template #headercheckboxicon let-allSelected let-partialSelected="partialSelected">
 				<i class="pi pi-check" *ngIf="allSelected"></i>
 				<i class="pi pi-minus" *ngIf="partialSelected" [ngStyle]="{ color: 'var(--text-color)' }"></i>
@@ -17,14 +23,13 @@
 			@if(this.ngForm.controls.years.invalid){
 				<p class="text-sm text-red-500">Invalid Year Range. Min year > Max Year</p>
 				}
-			<div class="flex flex-col space-y-3" >
-				<p>Min Year: {{ngForm.controls.years.controls.minYear.value}}</p>
+			<p><span class="text-surface-400">Year:</span> {{ngForm.controls.years.controls.minYear.value}}- {{ngForm.controls.years.controls.maxYear.value}}</p>
+			<div class="flex flex-col space-y-5 mt-3" >
+
 				<p-slider [min]="1990" [max]="2025" formControlName="minYear" class="w-56" />
-			</div>
-			<div class="flex flex-col space-y-3" >
-				<p>Max Year: {{ngForm.controls.years.controls.maxYear.value}}</p>
 				<p-slider [min]="1990" [max]="2025" formControlName="maxYear" class="w-56" />
 			</div>
+
 		</div>
 
 		<!--		Runtime range-->
@@ -32,14 +37,13 @@
 			@if(this.ngForm.controls.runtimes.invalid){
 				<p class="text-sm text-red-500">Invalid Runtime Range. Min runtime > Max runtime</p>
 				}
-			<div class="flex flex-col space-y-3" >
-				<p>Min Runtime: {{ngForm.controls.runtimes.controls.minRuntime.value}} minutes</p>
+			<p><span class="text-surface-400">Runtime:  </span>{{ngForm.controls.runtimes.controls.minRuntime.value}} - {{ngForm.controls.runtimes.controls.maxRuntime.value}} minutes</p>
+			<div class="flex flex-col space-y-5 mt-3" >
+
 				<p-slider [min]="20" [max]="240" formControlName="minRuntime" class="w-56" />
-			</div>
-			<div class="flex flex-col space-y-3" >
-				<p>Max Runtime: {{ngForm.controls.runtimes.controls.maxRuntime.value}} minutes</p>
 				<p-slider [min]="20" [max]="240" formControlName="maxRuntime" class="w-56" />
 			</div>
+
 		</div>
 
 		<!--		IMDB Rating range-->
@@ -47,14 +51,14 @@
 			@if(this.ngForm.controls.imdbRatings.invalid){
 				<p class="text-sm text-red-500">Invalid Rating Range. Min rating > Max rating</p>
 				}
-			<div class="flex flex-col space-y-3" >
-				<p>Min IMDB Rating: {{ngForm.controls.imdbRatings.controls.minRating.value}}</p>
+			<p> <span class="text-surface-400">IMDB Rating:</span>
+				 {{ngForm.controls.imdbRatings.controls.minRating.value}}.0 - {{ngForm.controls.imdbRatings.controls.maxRating.value}}.0</p>
+			<div class="flex flex-col space-y-5 mt-3" >
+
 				<p-slider [min]="0" [max]="10" [step]="0.1" formControlName="minRating" class="w-56" />
-			</div>
-			<div class="flex flex-col space-y-3" >
-				<p>Max IMDB Rating: {{ngForm.controls.imdbRatings.controls.maxRating.value}}</p>
 				<p-slider [min]="0" [max]="10" [step]="0.1" formControlName="maxRating" class="w-56" />
 			</div>
+			
 		</div>
 
 

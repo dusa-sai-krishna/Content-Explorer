@@ -1,22 +1,36 @@
+<p-dialog [modal]="true"  [visible]="isLoading()" [style]="{ width: '25rem' }" closable="false" closeOnEscape="false">
+	<img ngSrc="/placeholder-poster.png" alt="" height="1500" width="1000">
+</p-dialog>
+
+@if(!isLoading()){
 <div  class="mt-5 flex flex-col space-y-4">
 
 
-	<div class="flex flex-row">
-		<div class="w-1/5 fixed left-1">
 
-			<app-filter [searchType]="searchType()"/>
+<div class="flex flex-row">
+<div class="w-[15vw] fixed left-8 top-[25%]">
 
-		</div>
-		<div class="flex flex-row flex-wrap w-full ml-20 " >
-			@for (content of searchResult() ; track content!.ids.trakt) {
-				<a [routerLink]="['/',searchType(),content.ids.trakt]">
-					<app-content-card [content]="content"/>
-				</a>
+@if(searchResult().length>0){
+<app-filter [searchType]="searchType()"/>
+}
 
-			}
-		</div>
-	</div>
-
-	<p-paginator (onPageChange)="onPageChange($event)" [first]="first"  [rows]="1" [totalRecords]="totalPages()"/>
 
 </div>
+<div class="relative left-30 flex flex-row flex-wrap w-full ml-20 " >
+
+
+@for (content of searchResult() ; track content!.ids.trakt) {
+<a target="_blank" [routerLink]="['/',searchType(),content.ids.trakt]">
+	<app-content-card [content]="content"/>
+</a>
+
+}
+</div>
+</div>
+
+<p-paginator (onPageChange)="onPageChange($event)" [first]="first"  [rows]="1" [totalRecords]="totalPages()"/>
+
+
+</div>
+}
+

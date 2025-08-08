@@ -13,6 +13,9 @@ import { Paginator, PaginatorState } from "primeng/paginator";
 import { toSignal } from '@angular/core/rxjs-interop'; // Required for signal conversion
 import { map } from "rxjs";
 import {FilterComponent} from "../filter.component/filter.component";
+import {LoadingService} from "../../loading.service";
+import {Dialog} from "primeng/dialog";
+import {NgOptimizedImage} from "@angular/common";
 
 @Component({
     selector: 'app-search-results',
@@ -21,7 +24,9 @@ import {FilterComponent} from "../filter.component/filter.component";
         ContentCardComponent,
         Paginator,
         FilterComponent,
-        RouterLink
+        RouterLink,
+        Dialog,
+        NgOptimizedImage
     ],
     templateUrl: './search-results.component.html',
     styleUrl: './search-results.component.css'
@@ -32,6 +37,8 @@ export class SearchResultsComponent  {
     _apiService = inject(ApiService);
     _router = inject(Router);
     _route = inject(ActivatedRoute);
+    _loadingService = inject(LoadingService);
+    isLoading = this._loadingService.isLoading;
     first = 0;
     totalPages = this._apiService.totalPages;
 
@@ -57,11 +64,9 @@ export class SearchResultsComponent  {
     constructor() {
         effect(() => {
             const type = this.searchType();
-            console.log("Country",this.queryParamSignal()?.countries);
-
+            // console.log("Country",this.queryParamSignal()?.countries);
             this._apiService.searchUserInput(type,this.queryParamSignal()).subscribe(results => {
                 this.searchResult.set(results);
-            // console.log("Request sent")
             });
         });
     }
@@ -75,4 +80,6 @@ export class SearchResultsComponent  {
             queryParamsHandling: 'merge'
         }).then(() => console.log("Paginator State changed!!!"));
     }
+
+
 }

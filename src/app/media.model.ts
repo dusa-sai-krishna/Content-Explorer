@@ -35,15 +35,7 @@ export type Show = {
     certification?:string
 }
 
-export type Season = {
-    number: number
-    ids: {
-        trakt: number,
-        tvdb: number,
-        tmdb: number,
-    }
-    images?:Images
-}
+
 
 export type Episode = {
     season: number,
@@ -80,4 +72,28 @@ export type Images={
     "thumb":string[]
     "headshot":string[]
 
+}
+
+export type Season= {
+    number: number;
+    ids: {
+        trakt: number;
+        tvdb: number;
+        tmdb: number;
+        tvrage: number | null;
+    };
+    rating?: number;
+    votes?: number;
+    episode_count?: number;
+    aired_episodes?: number;
+    title: string;
+    overview?: string;
+    first_aired?: string;       // ISO date string
+    updated_at?: string;        // ISO date string
+    network?: string;
+    original_title?: string
+    images?: {
+        poster: string[];
+        thumb: string[];
+    };
 }
